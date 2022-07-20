@@ -110,7 +110,7 @@ exports.getQuestion = async (req, res) => {
                 const USER_ID = decoded.user.user_id
                 const post = result.map(post => {
                     const rating = result2[0].rating;
-                    const time = post.post_date.toLocaleString();
+                    const time = post.post_date;
                     const editTime = post.edit_date.toLocaleString();
                     return { ...result[0], like_amount: rating, post_date: time, edit_date: editTime }
                 })
