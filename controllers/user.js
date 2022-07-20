@@ -13,7 +13,7 @@ exports.getQuestions = async (req, res) => {
                 if (err) throw err;
                 const posts = result.map(post => {
                     const rating = result2.find(res => res.post_id === post.post_id);
-                    const time = post.post_date.toLocaleString();
+                    const time = post.post_date;
                     const like_amount = rating ? rating.rating : 0;
                     return { ...post, like_amount: like_amount, post_date: time }
                 })
@@ -111,7 +111,7 @@ exports.getQuestion = async (req, res) => {
                 const post = result.map(post => {
                     const rating = result2[0].rating;
                     const time = post.post_date;
-                    const editTime = post.edit_date.toLocaleString();
+                    const editTime = post.edit_date;
                     return { ...result[0], like_amount: rating, post_date: time, edit_date: editTime }
                 })
                 if (POSTER_ID === USER_ID) {
@@ -122,8 +122,8 @@ exports.getQuestion = async (req, res) => {
             } else {
                 const post = result.map(post => {
                     const rating = result2[0].rating;
-                    const time = post.post_date.toLocaleString();
-                    const editTime = post.edit_date.toLocaleString();
+                    const time = post.post_date;
+                    const editTime = post.edit_date;
                     return { ...result[0], like_amount: rating, post_date: time, edit_date: editTime }
                 })
                     res.status(200).send(post)
@@ -208,8 +208,8 @@ exports.getAnswers = async (req, res) => {
                     const USER_ID = decoded.user.user_id;
                     const posts = result.map(post => {
                         const rating = result2.find(res => res.answer_id === post.answer_id);
-                        const time = post.post_date.toLocaleString();
-                        const editTime = post.edit_date.toLocaleString();
+                        const time = post.post_date;
+                        const editTime = post.edit_date;
                         const like_amount = rating ? rating.rating : 0;
                         return { ...post, rating: like_amount, id: answerID, post_date: time, edit_date: editTime, isEditable: false }
                     })
@@ -221,7 +221,7 @@ exports.getAnswers = async (req, res) => {
                 } else {
                     const posts = result.map(post => {
                         const rating = result2.find(res => res.answer_id === post.answer_id);
-                        const time = post.post_date.toLocaleString();
+                        const time = post.post_date;
                         const like_amount = rating ? rating.rating : 0;
                         return { ...post, rating: like_amount, post_date: time}
                     })
